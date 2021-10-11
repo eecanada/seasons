@@ -1,5 +1,16 @@
 import React from 'react';
 
+const seasonCongif = {
+  summer: {
+    text: `let's hit the beach`,
+    iconName: 'sun',
+  },
+  winter: {
+    text: `Burr, it is chilly`,
+    iconName: 'snowflake',
+  },
+};
+
 const getSeason = (lat, month) => {
   if (month > 2 && month < 9) {
     return lat > 0 ? 'summer' : 'winter';
@@ -9,8 +20,16 @@ const getSeason = (lat, month) => {
 };
 
 const SeasonDisplay = (props) => {
-  const season = getSeason(props.lat, new Date().getMonth());
-  return <div> Season Display: {season} </div>;
+  const  season = getSeason(props.lat, new Date().getMonth());
+  const {text, iconName} = seasonCongif[season];
+ 
+  return (
+    <div>
+      <i className={`${iconName} icon`} />
+      <h1>{text}</h1>
+      <i className={`${iconName} icon`} />
+    </div>
+  );
 };
 
 export default SeasonDisplay;
